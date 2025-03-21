@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>YF小林犟</title>
+  
+  <subtitle>day day up</subtitle>
+  <link href="https://yunfulin.github.io/LF_blog/atom.xml" rel="self"/>
+  
+  <link href="https://yunfulin.github.io/LF_blog/"/>
+  <updated>2025-03-21T11:43:30.709Z</updated>
+  <id>https://yunfulin.github.io/LF_blog/</id>
+  
+  <author>
+    <name>LYF</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>a标签下载附件，无法下载、无法重命名？怎么回事</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-010.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-010.html</id>
+    <published>2022-11-29T16:00:15.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、-为什么a标签无法下载，无法重命名？&quot;&gt;&lt;a href=&quot;#一、-为什么a标签无法下载，无法重命名？&quot; class=&quot;headerlink&quot; title=&quot;一、 为什么a标签无法下载，无法重命名？&quot;&gt;&lt;/a&gt;一、</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="vue" scheme="https://yunfulin.github.io/LF_blog/tags/vue/"/>
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react引入插件报错Error：Minified React error 321</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-009.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-009.html</id>
+    <published>2022-10-11T14:57:13.000Z</published>
+    <updated>2025-03-21T11:43:30.707Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我在react16.8之前不支持hook的项目上，引入拖拽插件报错#321,提示Error: Minified React error #321，react官方(&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="react" scheme="https://yunfulin.github.io/LF_blog/tags/react/"/>
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nvm、nrm、node、npm、yarn使用教程</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-008.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-008.html</id>
+    <published>2022-09-30T18:38:55.000Z</published>
+    <updated>2025-03-21T11:43:30.699Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;nvm：全称node.js version management</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="npm" scheme="https://yunfulin.github.io/LF_blog/tags/npm/"/>
+    
+    <category term="node" scheme="https://yunfulin.github.io/LF_blog/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ant-design的Table组件暂无数据，滚动条位置修改</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-007.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-007.html</id>
+    <published>2022-09-16T16:25:20.000Z</published>
+    <updated>2025-03-21T11:43:30.695Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;font color=&quot;red&quot;&gt; antd3.x &lt;/font&gt;的Table组件，设置横向滚动，如果没有数据，横向滚动条会展示在暂无数据的上方，现在想要把暂无数据展示在滚动条的上面&lt;/p&gt;
+&lt;p&gt;原本&lt;/p&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="react" scheme="https://yunfulin.github.io/LF_blog/tags/react/"/>
+    
+    <category term="css3" scheme="https://yunfulin.github.io/LF_blog/tags/css3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何巧妙修改node_modules里的代码</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-006.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-006.html</id>
+    <published>2022-09-06T16:16:11.000Z</published>
+    <updated>2025-03-21T11:43:30.694Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;为什么要改node-modules？&quot;&gt;&lt;a href=&quot;#为什么要改node-modules？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+    <category term="npm" scheme="https://yunfulin.github.io/LF_blog/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React基于antd3.x 图片预览，支持轮播、缩放、拖拽</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-005.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-005.html</id>
+    <published>2022-08-25T22:55:33.000Z</published>
+    <updated>2025-03-21T11:43:30.692Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在一个React项目上，新增一个图片预览功能，如果你们的UI是基于 &lt;a href=&quot;https://ant.design/components/image-cn/&quot;&gt;antd4.x&lt;/a&gt; 的可以看看这个，然后我的项目是基于</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="react" scheme="https://yunfulin.github.io/LF_blog/tags/react/"/>
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webpack3.x ~ 4.x 优化笔记</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-016.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-016.html</id>
+    <published>2022-06-23T22:47:35.000Z</published>
+    <updated>2025-03-21T11:43:30.711Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、基本配置&quot;&gt;&lt;a href=&quot;#一、基本配置&quot; class=&quot;headerlink&quot; title=&quot;一、基本配置&quot;&gt;&lt;/a&gt;一、基本配置&lt;/h2&gt;&lt;h3 id=&quot;1、创建一个公共的配置文件-webpack-base-js&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>scp2自动化部署到静态文件服务器 Nginx</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-017.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-017.html</id>
+    <published>2021-11-20T23:55:34.000Z</published>
+    <updated>2025-03-21T11:43:30.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;平时部署项目：先部署到测试环境，再发布到生产环境上，部署到测试环境用 &lt;code&gt;xshell&lt;/code&gt; 连上服务器，然后用 &lt;code&gt;xftp&lt;/code&gt; 连接服务器，将本地 &lt;code&gt;build&lt;/code&gt; 好的</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="前端自动化部署" scheme="https://yunfulin.github.io/LF_blog/tags/%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React在线预览PDF文件</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-018.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-018.html</id>
+    <published>2021-10-20T22:30:04.000Z</published>
+    <updated>2025-03-21T11:43:30.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;因为&lt;code&gt;webpack 3&lt;/code&gt;版本太低无法兼容最新版&lt;code&gt;react-pdf: ^6.2.2&lt;/code&gt;，经过尝试发现</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="react" scheme="https://yunfulin.github.io/LF_blog/tags/react/"/>
+    
+    <category term="PDF" scheme="https://yunfulin.github.io/LF_blog/tags/PDF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue实现简单分页（后台只返回分页的全部数据，分页功能前端做）</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-003.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-003.html</id>
+    <published>2021-10-18T13:03:08.000Z</published>
+    <updated>2025-03-21T11:43:30.688Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;实现效果🤢：&lt;/p&gt;
+&lt;img src=&quot;/LF_blog/notes/no-003/1.png&quot; class=&quot;&quot;&gt;
+
+&lt;h2 id=&quot;定义data&quot;&gt;&lt;a href=&quot;#定义data&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="vue" scheme="https://yunfulin.github.io/LF_blog/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue移动端适配（vue-cli 3/4）</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-002.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-002.html</id>
+    <published>2021-10-12T00:30:21.000Z</published>
+    <updated>2025-03-21T11:43:30.688Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;项目场景：&quot;&gt;&lt;a href=&quot;#项目场景：&quot; class=&quot;headerlink&quot; title=&quot;项目场景：&quot;&gt;&lt;/a&gt;项目场景：&lt;/h2&gt;&lt;p&gt;Vue项目H5页面，只要求适配移动端&lt;font color=&quot;red&quot;&gt;（vue 2.6 + @vue/cli</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="vue" scheme="https://yunfulin.github.io/LF_blog/tags/vue/"/>
+    
+    <category term="postcss" scheme="https://yunfulin.github.io/LF_blog/tags/postcss/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装vue脚手架@vue/cli 4.5.13(稳定版)</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-001.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-001.html</id>
+    <published>2021-10-09T18:56:37.000Z</published>
+    <updated>2025-03-21T11:43:30.686Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;首先新建一个&lt;font color=&quot;red&quot;&gt; vue &lt;/font&gt;测试项目，还记得以前自己是用&lt;font color=&quot;red&quot; bgcolor=&quot;yellow&quot;&gt; vue-cli 2.0的版本</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="vue" scheme="https://yunfulin.github.io/LF_blog/tags/vue/"/>
+    
+    <category term="vue-cli" scheme="https://yunfulin.github.io/LF_blog/tags/vue-cli/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS高频面试题（二）</title>
+    <link href="https://yunfulin.github.io/LF_blog/interview/no-012.html"/>
+    <id>https://yunfulin.github.io/LF_blog/interview/no-012.html</id>
+    <published>2020-09-03T23:49:20.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、谈谈你对BFC的理解？&quot;&gt;&lt;a href=&quot;#1、谈谈你对BFC的理解？&quot; class=&quot;headerlink&quot; title=&quot;1、谈谈你对BFC的理解？&quot;&gt;&lt;/a&gt;1、谈谈你对BFC的理解？&lt;/h2&gt;&lt;h3 id=&quot;1、BFC是什么&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="https://yunfulin.github.io/LF_blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="css3" scheme="https://yunfulin.github.io/LF_blog/tags/css3/"/>
+    
+    <category term="html" scheme="https://yunfulin.github.io/LF_blog/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS高频面试题（一）</title>
+    <link href="https://yunfulin.github.io/LF_blog/interview/no-011.html"/>
+    <id>https://yunfulin.github.io/LF_blog/interview/no-011.html</id>
+    <published>2020-09-01T17:47:06.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1、水平垂直居中布局&quot;&gt;&lt;a href=&quot;#1、水平垂直居中布局&quot; class=&quot;headerlink&quot; title=&quot;1、水平垂直居中布局&quot;&gt;&lt;/a&gt;1、水平垂直居中布局&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;1. 已知元素宽高: 绝对定位 + margin:</summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="https://yunfulin.github.io/LF_blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="css3" scheme="https://yunfulin.github.io/LF_blog/tags/css3/"/>
+    
+    <category term="html" scheme="https://yunfulin.github.io/LF_blog/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在谷歌里安装 vue react 调试工具</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-004.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-004.html</id>
+    <published>2020-08-28T15:38:44.000Z</published>
+    <updated>2025-03-21T11:43:30.689Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、下载&quot;&gt;&lt;a href=&quot;#一、下载&quot; class=&quot;headerlink&quot; title=&quot;一、下载&quot;&gt;&lt;/a&gt;一、下载&lt;/h2&gt;&lt;p&gt;这里我推荐一个自己常用的插件 &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="插件" scheme="https://yunfulin.github.io/LF_blog/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matery主题优化（三）</title>
+    <link href="https://yunfulin.github.io/LF_blog/blog/no-015.html"/>
+    <id>https://yunfulin.github.io/LF_blog/blog/no-015.html</id>
+    <published>2020-06-23T21:36:20.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Matery评论功能之（Valine）&quot;&gt;&lt;a href=&quot;#一、Matery评论功能之（Valine）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="hexo" scheme="https://yunfulin.github.io/LF_blog/categories/hexo/"/>
+    
+    
+    <category term="个人博客" scheme="https://yunfulin.github.io/LF_blog/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matery主题优化（二）</title>
+    <link href="https://yunfulin.github.io/LF_blog/blog/no-014.html"/>
+    <id>https://yunfulin.github.io/LF_blog/blog/no-014.html</id>
+    <published>2020-06-22T23:10:11.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;特效：1、页面加载动画 loading 2、看板娘（卡通人物）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1、页面加载动画-loading&quot;&gt;&lt;a href=&quot;#1、页面加载动画-loading&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="hexo" scheme="https://yunfulin.github.io/LF_blog/categories/hexo/"/>
+    
+    
+    <category term="个人博客" scheme="https://yunfulin.github.io/LF_blog/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Matery主题优化（一）</title>
+    <link href="https://yunfulin.github.io/LF_blog/blog/no-013.html"/>
+    <id>https://yunfulin.github.io/LF_blog/blog/no-013.html</id>
+    <published>2020-06-20T20:32:11.000Z</published>
+    <updated>2025-03-21T11:43:30.709Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;特效：1、首页轮播冒泡  2、鼠标点击弹出文字 3、鼠标移动特效 4、动态标签栏&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1、首页轮播冒泡&quot;&gt;&lt;a href=&quot;#1、首页轮播冒泡&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="hexo" scheme="https://yunfulin.github.io/LF_blog/categories/hexo/"/>
+    
+    
+    <category term="个人博客" scheme="https://yunfulin.github.io/LF_blog/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
