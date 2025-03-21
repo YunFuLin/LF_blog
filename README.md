@@ -6,6 +6,6 @@
 
 ## 启动项目
 ```sh
-npm install
-npm run server
+pnpm install
+pnpm run server
 ```
