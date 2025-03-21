@@ -1,0 +1,52 @@
+<style type="text/css">
+  /* don't remove. */
+  .page404-cover {
+      /* height: 75vh; */
+      height: 88vh;
+  }
+
+  #svgContainer {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  header .brand-logo .logo-span {
+    color: #222;
+  }
+ 
+  header .nav-menu li i {
+    color: #222;
+  }
+ 
+  header .nav-menu li span {
+    color: #222;
+  }
+ 
+  header .button-collapse i {
+    color: #222;
+  }
+</style>
+
+
+<script src="<%- theme.libs.js.my404bodymovin %>"></script>
+<script src="<%- theme.libs.js.my404data %>"></script>
+
+<div class="bg-cover pd-header page404-cover">
+  <div id="svgContainer"></div>
+
+  <script type="text/javascript">
+      var svgContainer = document.getElementById('svgContainer');
+      var animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: 'svg',
+        loop: true,
+        animationData: JSON.parse(animationData)
+      });
+  </script>
+</div>
