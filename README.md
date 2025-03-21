@@ -7,5 +7,5 @@
 ## 启动项目
 ```sh
 npm install
-hexo server
+npm run server
 ```
