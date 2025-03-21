@@ -24,8 +24,8 @@ importers:
         specifier: ^0.1.9
         version: 0.1.9(chokidar@3.6.0)
       hexo-generator-category:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^2.0.0
+        version: 2.0.0
       hexo-generator-feed:
         specifier: ^3.0.0
         version: 3.0.0(chokidar@3.6.0)
@@ -1067,9 +1067,9 @@ packages:
   hexo-generator-baidu-sitemap@0.1.9:
     resolution: {integrity: sha512-P/mLsddxcIaq6GmKkqcdw6zrx+iYMpxpL8eh8bSDEJFyTNYDLWJBN29fHin6T3etu9mnOKvNc17dyLgYTN4O3Q==}
 
-  hexo-generator-category@1.0.0:
-    resolution: {integrity: sha512-kmtwT1SHYL2ismbGnYQXNtqLFSeTdtHNbJIqno3LKROpCK8ybST5QVXF1bZI9LkFcXV/H8ilt8gfg4/dNNcQQQ==}
-    engines: {node: '>=8.6.0'}
+  hexo-generator-category@2.0.0:
+    resolution: {integrity: sha512-9OduRBf3WeRDa4BR0kAfRjOVHur7v3fm0NKAwbjUiqULigAdNZVZPO3cHKW2MlBbl/lI5PuWdhQ9zZ99CCCAgQ==}
+    engines: {node: '>=14'}
 
   hexo-generator-feed@3.0.0:
     resolution: {integrity: sha512-Jo35VSRSNeMitS2JmjCq3OHAXXYU4+JIODujHtubdG/NRj2++b3Tgyz9pwTmROx6Yxr2php/hC8og5AGZHh8UQ==}
@@ -1119,6 +1119,10 @@ packages:
   hexo-pagination@1.0.0:
     resolution: {integrity: sha512-miEVFgxchPr2qNWxw0JWpJ9R/Yaf7HjHBZVjvCCcqfbsLyYtCvIfJDxcEwz1sDOC/fLzYPqNnhUI73uNxBHRSA==}
     engines: {node: '>=8.6.0'}
+
+  hexo-pagination@3.0.0:
+    resolution: {integrity: sha512-8oo1iozloZo7TojPVYg4IxL3SJKCBdSJ908fTlIxIK7TWJIKdYnQlW31+12DBJ0NhVZA/lZisPObGF08wT8fKw==}
+    engines: {node: '>=14'}
 
   hexo-permalink-pinyin@1.1.0:
     resolution: {integrity: sha512-jSbIqlw6oYXcGYgT2ak+mxoR5otFW9r/35Ui8+WlEIeHj7wgXXS+GIQuCMTAGrVsG80jEb3tTjp6Sseu7opMXg==}
@@ -3930,9 +3934,9 @@ snapshots:
       - chokidar
       - supports-color
 
-  hexo-generator-category@1.0.0:
+  hexo-generator-category@2.0.0:
     dependencies:
-      hexo-pagination: 1.0.0
+      hexo-pagination: 3.0.0
 
   hexo-generator-feed@3.0.0(chokidar@3.6.0):
     dependencies:
@@ -3999,6 +4003,8 @@ snapshots:
       picocolors: 1.1.1
 
   hexo-pagination@1.0.0: {}
+
+  hexo-pagination@3.0.0: {}
 
   hexo-permalink-pinyin@1.1.0:
     dependencies:
