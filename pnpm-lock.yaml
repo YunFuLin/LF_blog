@@ -18,8 +18,8 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       hexo-generator-archive:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^2.0.0
+        version: 2.0.0
       hexo-generator-baidu-sitemap:
         specifier: ^0.1.9
         version: 0.1.9(chokidar@3.6.0)
@@ -1060,9 +1060,9 @@ packages:
     resolution: {integrity: sha512-Q92zQ5PlVDouvSWFLXQoFSTLIUIODikUJs2BfAXQglyOEjN1dOQn1Z5Nimk/7GHof17R5h/uObCQLnZAjzI2tg==}
     engines: {node: '>=14'}
 
-  hexo-generator-archive@1.0.0:
-    resolution: {integrity: sha512-24TeanDGpMBUIq37DHpSESQbeN6ssZ06edsGSI76tN4Yit50TgsgzP5g5DSu0yJk0jUtHJntysWE8NYAlFXibA==}
-    engines: {node: '>=8.6.0'}
+  hexo-generator-archive@2.0.0:
+    resolution: {integrity: sha512-KikJk7dGFbtNHOgqtLFGf5T/S8n1paGp+Gy0KfVDz+HKYhGbXOouyiZkmc3O9KrYt6ja14rmkMhq7KKGtvfehw==}
+    engines: {node: '>=14'}
 
   hexo-generator-baidu-sitemap@0.1.9:
     resolution: {integrity: sha512-P/mLsddxcIaq6GmKkqcdw6zrx+iYMpxpL8eh8bSDEJFyTNYDLWJBN29fHin6T3etu9mnOKvNc17dyLgYTN4O3Q==}
@@ -1119,6 +1119,10 @@ packages:
   hexo-pagination@1.0.0:
     resolution: {integrity: sha512-miEVFgxchPr2qNWxw0JWpJ9R/Yaf7HjHBZVjvCCcqfbsLyYtCvIfJDxcEwz1sDOC/fLzYPqNnhUI73uNxBHRSA==}
     engines: {node: '>=8.6.0'}
+
+  hexo-pagination@3.0.0:
+    resolution: {integrity: sha512-8oo1iozloZo7TojPVYg4IxL3SJKCBdSJ908fTlIxIK7TWJIKdYnQlW31+12DBJ0NhVZA/lZisPObGF08wT8fKw==}
+    engines: {node: '>=14'}
 
   hexo-permalink-pinyin@1.1.0:
     resolution: {integrity: sha512-jSbIqlw6oYXcGYgT2ak+mxoR5otFW9r/35Ui8+WlEIeHj7wgXXS+GIQuCMTAGrVsG80jEb3tTjp6Sseu7opMXg==}
@@ -3917,9 +3921,9 @@ snapshots:
       graceful-fs: 4.2.11
       hexo-util: 3.3.0
 
-  hexo-generator-archive@1.0.0:
+  hexo-generator-archive@2.0.0:
     dependencies:
-      hexo-pagination: 1.0.0
+      hexo-pagination: 3.0.0
 
   hexo-generator-baidu-sitemap@0.1.9(chokidar@3.6.0):
     dependencies:
@@ -3999,6 +4003,8 @@ snapshots:
       picocolors: 1.1.1
 
   hexo-pagination@1.0.0: {}
+
+  hexo-pagination@3.0.0: {}
 
   hexo-permalink-pinyin@1.1.0:
     dependencies:
