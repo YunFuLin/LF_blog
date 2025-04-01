@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      npm_config_registry: https://registry.npmmirror.com/
 
     steps:
       # 下载源码
