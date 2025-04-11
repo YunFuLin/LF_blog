@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>YF小林犟</title>
+  
+  <subtitle>day day up</subtitle>
+  <link href="https://yunfulin.github.io/LF_blog/atom.xml" rel="self"/>
+  
+  <link href="https://yunfulin.github.io/LF_blog/"/>
+  <updated>2025-04-11T09:47:16.458Z</updated>
+  <id>https://yunfulin.github.io/LF_blog/</id>
+  
+  <author>
+    <name>LYF</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用pnpm 的 monorepo架构多包管理</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-059.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-059.html</id>
+    <published>2024-12-20T21:24:17.000Z</published>
+    <updated>2025-04-11T09:47:16.458Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;可以使用 &lt;strong&gt;&lt;code&gt;pnpm&lt;/code&gt;&lt;/strong&gt; 的 monorepo 架构来共享公共组件、方法和第三方依赖，且效果非常好！&lt;/strong&gt;&lt;br&gt;相比传统的 &lt;code&gt;npm&lt;/code&gt; 和</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="pnpm" scheme="https://yunfulin.github.io/LF_blog/tags/pnpm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端导出10万条数据（Web Worker）</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-063.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-063.html</id>
+    <published>2024-10-16T17:05:19.000Z</published>
+    <updated>2025-04-11T09:47:16.464Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、场景&quot;&gt;&lt;a href=&quot;#一、场景&quot; class=&quot;headerlink&quot; title=&quot;一、场景&quot;&gt;&lt;/a&gt;一、场景&lt;/h3&gt;&lt;p&gt;导出</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Web Worker" scheme="https://yunfulin.github.io/LF_blog/tags/Web-Worker/"/>
+    
+    <category term="excel" scheme="https://yunfulin.github.io/LF_blog/tags/excel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>监控页面卡顿，判断用户的页面是否卡主</title>
+    <link href="https://yunfulin.github.io/LF_blog/interview/no-041.html"/>
+    <id>https://yunfulin.github.io/LF_blog/interview/no-041.html</id>
+    <published>2024-09-18T15:25:19.000Z</published>
+    <updated>2025-04-11T09:47:16.410Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-markup&quot; data-language=&quot;markup&quot;&gt;&lt;code class=&quot;language-markup&quot;&gt;&lt;span class=&quot;token doctype&quot;&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="https://yunfulin.github.io/LF_blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内存泄漏排查和分析技巧详解</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-064.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-064.html</id>
+    <published>2024-08-10T15:14:19.000Z</published>
+    <updated>2025-04-11T09:47:16.465Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;分配给前端页面或应用程序的内存无法被 &lt;strong&gt;&lt;font style=&quot;color:#DF2A3F;&quot;&gt;垃圾回收器&lt;/font&gt;&lt;/strong&gt; 回收。这会导致内存使用量不断增加，最后可能导致应用程序崩溃或者变得超级缓慢&lt;/p&gt;
+&lt;h3 id=&quot;一、原因&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图片批量上传</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-061.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-061.html</id>
+    <published>2024-07-30T20:24:17.000Z</published>
+    <updated>2025-04-11T09:47:16.460Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;img src=&quot;/LF_blog/notes/no-061/1.png&quot; class=&quot;&quot;&gt;
+
+&lt;h2 id=&quot;一、使用场景&quot;&gt;&lt;a href=&quot;#一、使用场景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Vue" scheme="https://yunfulin.github.io/LF_blog/tags/Vue/"/>
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何防止录屏截图等恶意下载行为</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-027.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-027.html</id>
+    <published>2024-07-09T09:28:48.000Z</published>
+    <updated>2025-04-11T09:47:16.383Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;比如视频网站：优酷，爱奇艺 ，课程网站播放课程视频的时候，用屏幕录制软件录制视频区域会显示一片漆黑 (如下图)&lt;/p&gt;
+&lt;img src=&quot;/LF_blog/notes/no-027/1.gif&quot; class=&quot;&quot;&gt;
+
+
+
+&lt;p&gt;传统的方式：</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>包管理工具的发展以及 pnpm 依赖治理的最佳实践</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-058.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-058.html</id>
+    <published>2024-06-21T16:24:17.000Z</published>
+    <updated>2025-04-11T09:47:16.450Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;目前在前端领域最流行的包管理工具包含了 npm、yarn、pnpm，其中 pnpm 的机制对 yarn 和 npm 堪称降维打击，它通过软硬链接依赖的方式实现了快速安装、去除幽灵依赖，当下各种类库、组件库的最佳实践方案也基本都是 pnpm +</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="pnpm" scheme="https://yunfulin.github.io/LF_blog/tags/pnpm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何限制一个账号只能在一处登录</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-056.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-056.html</id>
+    <published>2024-06-01T16:07:05.000Z</published>
+    <updated>2025-04-11T09:47:16.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;font style=&quot;color:#0e0e0e;&quot;&gt;要限制一个账号只能在一处登录，常见的解决方案是通过 &lt;/font&gt;&lt;strong&gt;&lt;font</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Vue" scheme="https://yunfulin.github.io/LF_blog/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端如何实现自动检测更新</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-025.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-025.html</id>
+    <published>2024-05-12T15:26:48.000Z</published>
+    <updated>2025-04-11T09:47:16.376Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>针对项目可能用到的域名做了dns预解析和优化</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-026.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-026.html</id>
+    <published>2024-05-09T21:28:48.000Z</published>
+    <updated>2025-04-11T09:47:16.377Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;img src=&quot;/LF_blog/notes/no-026/1.png&quot; class=&quot;&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;DNS预解析&lt;/strong&gt;（&lt;code&gt;dns-prefetch&lt;/code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>babel-runtime 如何缩小打包体积</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-060.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-060.html</id>
+    <published>2024-04-11T17:24:17.000Z</published>
+    <updated>2025-04-11T09:47:16.458Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在前端工程化领域，&lt;strong&gt;包体积优化&lt;/strong&gt;一直是一个备受关注的话题。随着项目规模扩大和功能迭代，打包后的文件体积逐渐膨胀。而对于网页加载速度和性能优化来说，减小打包体积是至关重要的一环。&lt;/p&gt;
+&lt;p&gt;为此，在这篇文章中，我们将探讨如何利用</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+    <category term="babel" scheme="https://yunfulin.github.io/LF_blog/tags/babel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react原理篇幅-requestidlecallback</title>
+    <link href="https://yunfulin.github.io/LF_blog/interview/no-057.html"/>
+    <id>https://yunfulin.github.io/LF_blog/interview/no-057.html</id>
+    <published>2024-03-08T22:07:05.000Z</published>
+    <updated>2025-04-11T09:47:16.449Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;requestidlecallback&quot;&gt;&lt;a href=&quot;#requestidlecallback&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="https://yunfulin.github.io/LF_blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="React" scheme="https://yunfulin.github.io/LF_blog/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于webapck打包构建的优化难点</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-028.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-028.html</id>
+    <published>2024-03-02T22:29:48.000Z</published>
+    <updated>2025-04-11T09:47:16.384Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;随着项目选代，构建时间逐渐变慢，采用swc替代babel优化打包，使构建速度提升2倍，并试验性使用esbuild更是提高了接近3倍，构建物降低26%&lt;/p&gt;
+&lt;h2 id=&quot;swc-和-esbuild-为什么快&quot;&gt;&lt;a href=&quot;#swc-和-esbuild-为什么快&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue3 ref数组对象更新不及时一种解决办法</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-054.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-054.html</id>
+    <published>2024-02-29T17:05:05.000Z</published>
+    <updated>2025-04-11T09:47:16.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;在用vue3使用ref 时，有时遇到数组更新不及时的情况。具体就是 arr = ref([]); 在JS代码中更新arr.value =</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Vue" scheme="https://yunfulin.github.io/LF_blog/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>封装 axios 拦截器实现用户无感刷新 access_token</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-031.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-031.html</id>
+    <published>2024-02-27T23:01:34.000Z</published>
+    <updated>2025-04-11T09:47:16.406Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+    <category term="Axios" scheme="https://yunfulin.github.io/LF_blog/tags/Axios/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>企业级项目是如何二次封装 Axios请求的</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-030.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-030.html</id>
+    <published>2024-02-22T19:27:48.000Z</published>
+    <updated>2025-04-11T09:47:16.385Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;极致的优化和封装了 Axios 请求数据的体验(请求重试，请求缓存，请求竞态, 参数加密)&lt;/p&gt;
+&lt;h3 id=&quot;一、为什么要封装？&quot;&gt;&lt;a href=&quot;#一、为什么要封装？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="javascript" scheme="https://yunfulin.github.io/LF_blog/tags/javascript/"/>
+    
+    <category term="Axios" scheme="https://yunfulin.github.io/LF_blog/tags/Axios/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webpack 项目将 babel-loader 换成 swc-lodder 提升打包速度</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-029.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-029.html</id>
+    <published>2024-01-21T20:39:28.000Z</published>
+    <updated>2025-04-11T09:47:16.384Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;我们都知道 webpack 项目中默认的 loader 是用的</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue3.0里为什么要用 Proxy API 替代 defineProperty API</title>
+    <link href="https://yunfulin.github.io/LF_blog/interview/no-053.html"/>
+    <id>https://yunfulin.github.io/LF_blog/interview/no-053.html</id>
+    <published>2023-11-02T16:37:05.000Z</published>
+    <updated>2025-04-11T09:47:16.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Object-defineProperty&quot;&gt;&lt;a href=&quot;#一、Object-defineProperty&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试题" scheme="https://yunfulin.github.io/LF_blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="Vue" scheme="https://yunfulin.github.io/LF_blog/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpack本质</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-052.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-052.html</id>
+    <published>2023-10-23T19:23:17.000Z</published>
+    <updated>2025-04-11T09:47:16.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;font style=&quot;color:rgb(85, 85, 85);&quot;&gt;Webpack本质上一种基于事件流的编程范例，其实就是一系列的插件运行&lt;/font&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;font</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何选择Webpack和Rollup</title>
+    <link href="https://yunfulin.github.io/LF_blog/notes/no-051.html"/>
+    <id>https://yunfulin.github.io/LF_blog/notes/no-051.html</id>
+    <published>2023-10-15T16:23:17.000Z</published>
+    <updated>2025-04-11T09:47:16.443Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Rollup 是一款 ES Modules 打包器。它也可以将项目中散落的细小模块打包为整块代码，从而使得这些划分的模块可以更好地运行在浏览器环境或者 Node.js 环境。&lt;/p&gt;
+&lt;p&gt;从作用上来看，Rollup 与 Webpack 非常类似。不过相比于</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://yunfulin.github.io/LF_blog/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="webpack" scheme="https://yunfulin.github.io/LF_blog/tags/webpack/"/>
+    
+  </entry>
+  
+</feed>
