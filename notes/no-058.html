@@ -1,0 +1,1868 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="包管理工具的发展以及 pnpm 依赖治理的最佳实践">
+    <meta name="description" content="一个简单的博客">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>包管理工具的发展以及 pnpm 依赖治理的最佳实践 | YF小林犟</title>
+    <link rel="icon" type="image/png" href="/LF_blog/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/css/my.css">
+    <link rel="stylesheet" type="text/css" href="/LF_blog/css/loading.css">
+
+    <script src="/LF_blog/libs/jquery/jquery.min.js"></script>
+    <!-- 将网页提交给百度搜索引擎(自动推送) -->
+    <script>
+      (function(){
+          var bp = document.createElement('script');
+          var curProtocol = window.location.protocol.split(':')[0];
+          if (curProtocol === 'https') {
+              bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+          }
+          else {
+              bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(bp, s);
+      })();
+      </script>      
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/LF_blog/atom.xml" title="YF小林犟" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    
+  <div id="loading-box">
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="configure-border-1">
+        <div class="configure-core"></div>
+      </div>
+      <div class="configure-border-2">
+        <div class="configure-core"></div>
+      </div>
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  <!-- 页面加载动画 -->
+  <script>
+    $(document).ready(function () {
+      document.body.style.overflow = 'auto';
+      document.getElementById('loading-box').classList.add("loaded")
+    })
+  </script>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/LF_blog/" class="waves-effect waves-light">
+                    
+                    <img src="/LF_blog/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YF小林犟</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/LF_blog/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-file-signature" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/LF_blog/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YF小林犟</div>
+        <div class="logo-desc">
+            
+            一个简单的博客
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/LF_blog/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-file-signature"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/LF_blog/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">包管理工具的发展以及 pnpm 依赖治理的最佳实践</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/LF_blog/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/LF_blog/tags/pnpm/">
+                                <span class="chip bg-color">pnpm</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/LF_blog/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布:&nbsp;&nbsp;
+                    2024-06-21
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    18 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/LF_blog/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目前在前端领域最流行的包管理工具包含了 npm、yarn、pnpm，其中 pnpm 的机制对 yarn 和 npm 堪称降维打击，它通过软硬链接依赖的方式实现了快速安装、去除幽灵依赖，当下各种类库、组件库的最佳实践方案也基本都是 pnpm + monorepo。由于我所在的团队也使用了 pnpm 作为包管理工具，因此想通过一篇分享将 pnpm 从头至尾了解清楚。</p>
+</blockquote>
+<p>先来说说通过这篇文章能学到什么：</p>
+<ol>
+<li>包管理工具的发展历程与 pnpm 的脱颖而出</li>
+<li>pnpm 的优势及核心实现原理——软硬链接</li>
+<li>产生幽灵依赖的根本原因探究</li>
+<li>pnpm 项目的依赖治理方案</li>
+</ol>
+<h2 id="一、包管理工具的历史"><a href="#一、包管理工具的历史" class="headerlink" title="一、包管理工具的历史"></a>一、包管理工具的历史</h2><h3 id="1-npm-的诞生"><a href="#1-npm-的诞生" class="headerlink" title="1. npm 的诞生"></a>1. npm 的诞生</h3><p>随着 Node.js 的推出，开发者需要一种管理众多 JavaScript 库和模块的方法，npm（Node Package Manager）由此诞生。</p>
+<p>npm 于2010年被引入，很快成为 Node.js 生态系统中分享和管理模块的标准方式。其中 node_modules 目录就是npm用来局部安装依赖的地方，使得不同的项目可以使用不同版本的包，而不会互相干扰。随着时间的推移，npm 还成为了一个庞大的开源库生态系统，目前已是世界上最大的软件注册机构。</p>
+<p>然而，随着 npm 的快速成长，一些问题也随之而来，比如 node_modules 随着依赖的嵌套，体积越来越大。</p>
+<h3 id="2-npm-的嵌套依赖模型"><a href="#2-npm-的嵌套依赖模型" class="headerlink" title="2. npm 的嵌套依赖模型"></a>2. npm 的嵌套依赖模型</h3><p>在 npm2 及以前，每个包会将其依赖安装在自己的 node_modules 目录下，这意味着每个依赖也会带上自己的依赖，形成一个嵌套的结构，结构如下：<img src="/LF_blog/notes/no-058/1718767356183-8bc749f7-fe9f-4a2b-8595-e3b5d6728452-989221.png" class=""></p>
+<p>这样的结构虽然解决了版本冲突、依赖隔离等问题，但却有几个致命的缺点：</p>
+<ul>
+<li><strong>磁盘空间占用</strong>：每个依赖都会安装自己的依赖，导致了大量的重复，特别是在多个包共享同一依赖的场景下。</li>
+<li><strong>深层嵌套问题</strong>：这种嵌套结构在文件系统中造成了非常长的路径，然而大多数 Windows 工具、实用程序和 shell 最多只能处理长达 260 个字符的文件和文件夹路径。一旦超过，安装脚本就会开始出错，而且无法再使用常规方法删除 node_modules 文件夹。相关 issue：<a target="_blank" rel="noopener" href="https://github.com/nodejs/node-v0.x-archive/issues/6960">github.com/nodejs/node…</a></li>
+<li><strong>安装和更新缓慢</strong>：每次安装或更新依赖时，npm 需要处理和解析整个依赖树，过程非常缓慢。</li>
+</ul>
+<p>在此附上一张梗图🫰：<img src="/LF_blog/notes/no-058/1718767382178-5b437289-7af1-4d0b-96de-01c01fef1b0a-979499.png" class=""></p>
+<h3 id="3-npm3-架构升级"><a href="#3-npm3-架构升级" class="headerlink" title="3. npm3 架构升级"></a>3. npm3 架构升级</h3><p>为解决这些问题，npm 在第三个版本进行了重构：<a target="_blank" rel="noopener" href="https://github.com/npm/npm/releases/tag/v3.0.0">github.com/npm/npm/rel…</a></p>
+<p>通过将依赖扁平化，尽可能地减少了重复的包版本，有效减少了<strong>项目的总体积</strong>，同时也避免了 npm 早期的<strong>深层嵌套</strong>问题。</p>
+<p>扁平化结构如下：<img src="/LF_blog/notes/no-058/1718767464983-83d97e2f-f2a7-4ba1-8e19-2c253a31b699-721299.png" class=""></p>
+<p>可以看到还是会有一定可能产生嵌套问题，因为根目录只能存放某个包的一个版本。</p>
+<h3 id="4-yarn-的出现"><a href="#4-yarn-的出现" class="headerlink" title="4. yarn 的出现"></a>4. yarn 的出现</h3><p>yarn 的出现是为了解决 npm 当时存在的一些问题，它由 Facebook、Google、Exponent 和 Tilde 共同开发，于2016年发布，旨在提供一个更快、更安全的 JavaScript 包管理工具。</p>
+<p>yarn 的特点：</p>
+<ul>
+<li><strong>性能提升</strong>：yarn 在发布之初就强调了性能优势，特别是在安装依赖时。它通过并行安装依赖和缓存已下载的包来加速这一过程，减少了安装时间。</li>
+<li><strong>更好的依赖管理</strong>：yarn 引入了 yarn.lock 文件，这个锁文件确保了依赖的一致性。无论是在哪个环境下运行yarn install，都能确保安装相同版本的依赖，解决了因版本不匹配导致的问题。</li>
+<li><strong>更好的安全性</strong>：yarn 通过检查安装的每个包的许可证，并提供了一种机制来限制或拒绝具有不安全许可证的包的安装，增强了项目的安全性。</li>
+</ul>
+<p>有趣的是，在 yarn 发布后，npm 官方博客于当天恭喜了 yarn 的开源：<a target="_blank" rel="noopener" href="https://blog.npmjs.org/post/151660845210/hello-yarn">Hello, Yarn!</a>。</p>
+<img src="/LF_blog/notes/no-058/1718767494334-89455b43-22d3-4bf8-97f9-78a5a301d872-820422.png" class="">
+
+<p>可以看到当大公司参与开源项目时，社区可能会对其意图表示焦虑，但是 yarn 选择了默认发布到 npm 的注册表，意味着 yarn 用户仍然是现有 npm 社区的一部分。这或许就是开源的魅力所在吧！🫡</p>
+<h3 id="5-仍然存在的问题"><a href="#5-仍然存在的问题" class="headerlink" title="5. 仍然存在的问题"></a>5. 仍然存在的问题</h3><p>其实扁平化的结构还是存在一些问题的，那就是幽灵依赖。</p>
+<p>我们假设 B 并没有在 package.json 中注册，但由于 A 依赖 B，B会被提取到 node_moduls 顶层，那么在项目中就可以直接引用 B，这就是幽灵依赖，当 A 出现一些变动时（升级、删除），会导致出现几个问题：</p>
+<ul>
+<li><strong>环境不一致</strong>：由于该模块未在 package.json 文件中声明，当在其他环境（如测试、生产环境或者其他人的开发环境）中部署应用时将无法知道需要包含那些模块。这将导致环境之间存在不一致，可能会导致在其他环境中运行时出现错误。</li>
+<li><strong>版本控制问题</strong>：由于未明确声明依赖，可能会出现不同环境中使用的模块版本不一致的问题。这可能导致某些功能在某些环境中无法正常工作，或者出现不可预见的行为。</li>
+<li><strong>代码可读性和可维护性降低</strong>：开发人员无法清楚地了解应用程序的依赖项，导致代码理解困难。</li>
+</ul>
+<p>而 pnpm 就是为了解决这个问题而出现的。</p>
+<h2 id="二、pnpm-横空出世"><a href="#二、pnpm-横空出世" class="headerlink" title="二、pnpm 横空出世"></a>二、pnpm 横空出世</h2><p>pnpm（performant npm）旨在解决 npm 和 yarn 在某些方面存在的效率和存储问题，同时通过引入一种独特的链接方式有效地解决了大部分幽灵依赖的问题。</p>
+<img src="/LF_blog/notes/no-058/1718767509143-0ace7370-775f-48e1-a29c-0d0c16ba358f-742258.png" class="">
+
+<h3 id="1-硬链接和软链接（符号链接）"><a href="#1-硬链接和软链接（符号链接）" class="headerlink" title="1. 硬链接和软链接（符号链接）"></a>1. 硬链接和软链接（符号链接）</h3><p>在了解 pnpm 具体机制之前，我们先了解一下硬链接和软链接（符号链接）的概念：</p>
+<ul>
+<li>硬链接（Hard Link）<ul>
+<li>概念：硬链接是文件系统中的一个链接，它指向磁盘上的数据。当创建一个硬链接时，实际上是在创建一个和原始文件相同的入口点，但是不占用额外的磁盘空间。这个新的链接和原始文件共享相同的数据块，任何一个文件的修改都会反映在另一个上。</li>
+<li>特点：硬链接不能跨文件系统创建，也不能用于链接目录，但如果原始文件被删除，硬链接依然可以访问数据。</li>
+<li>使用场景：当你想要在不同位置访问同一个文件内容，而又不想占用额外磁盘空间时，可以使用硬链接。比如，在多个项目中共享相同的库文件，但不需要复制这个文件多份。</li>
+</ul>
+</li>
+<li>软链接（符号链接，Symbolic Link）<ul>
+<li>概念：软链接是一个特殊类型的文件，它包含了另一个文件的路径。类似于 Windows 系统中的快捷方式。与硬链接不同，软链接可以指向目录，也可以跨文件系统。</li>
+<li>特点：软链接指向文件或目录的路径，如果原始文件被删除，软链接就会失效，因为它的指向已经不存在了。</li>
+<li>使用场景：软链接适用于需要引用特定位置的文件或目录时，特别是当这些文件或目录可能会移动或变化时。它允许链接到另一个文件系统中的文件或目录。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-pnpm-中的硬软链接应用"><a href="#2-pnpm-中的硬软链接应用" class="headerlink" title="2. pnpm 中的硬软链接应用"></a>2. pnpm 中的硬软链接应用</h3><h4 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h4><p>pnpm 通过使用全局的 .pnpm-store 来存储下载的包，使用硬链接来重用存储在全局存储中的包文件，这样不同项目中相同的包无需重复下载，节约磁盘空间。</p>
+<img src="/LF_blog/notes/no-058/1718767518628-374a5527-d4b1-4352-b8a2-ba2f01261cb3-671509.png" class="">
+
+<h4 id="软链接（符号链接）"><a href="#软链接（符号链接）" class="headerlink" title="软链接（符号链接）"></a>软链接（符号链接）</h4><p>pnpm 将各类包的不同版本平铺在 node_modules/.pnpm 下，对于那些需要构建的包，它使用符号链接连接到存储在项目中的实际位置。这种方式使得包的安装非常快速，并且节约磁盘空间。</p>
+<img src="/LF_blog/notes/no-058/1718767537663-536044d2-c876-4bfe-bab8-0a4958db0d09-434942.png" class="">
+<img src="/LF_blog/notes/no-058/1718767573094-f473dbc6-938a-4291-a711-73512d27e9ab-936972.png" class="">
+
+<p>举个例子，项目中依赖了 A，这时候可以通过创建软链接，在 node_modules 根目录下创建 A 软链指向了 node_modules/.pnpm/A/node_modules/A。此时如果 A 依赖 B，pnpm 同样会把 B 放置在 .pnpm 中，A 同样可以通过 软链接依赖到 B，避免了嵌套过深的情况。<img src="/LF_blog/notes/no-058/1718767581157-56f628ad-0c7d-4e94-b30d-aad82243a744-454363.png" class=""></p>
+<p>可以来看看依赖软链的体现：</p>
+<img src="/LF_blog/notes/no-058/1718767616143-3df57780-60de-4fdb-bda1-d1abdcaeafe1-807957.png" class="">
+<img src="/LF_blog/notes/no-058/1718767631485-059166be-f018-49e0-81de-7a51cea66036-978524.png" class="">
+
+<p>这个时候再回去看看官网提供的图片，应该就清晰很多了。</p>
+<p>可以得知，这种巧妙的结构解决了很多问题：</p>
+<ol>
+<li>节省磁盘空间：由于使用硬链接，相同的包不需要被重复存储，大大减少了磁盘空间的需求。</li>
+<li>提高安装速度：安装包时，pnpm 通过创建链接而非复制文件，这使得安装过程非常快速。</li>
+<li>确保依赖隔离：通过软链接有效减少了幽灵依赖产生的可能，同时保证了依赖的隔离。</li>
+</ol>
+<h3 id="3-依赖安装优化"><a href="#3-依赖安装优化" class="headerlink" title="3. 依赖安装优化"></a>3. 依赖安装优化</h3><p>与此同时，pnpm 在依赖安装的速度上也有显著的提升，这得益于 pnpm 将依赖的安装从串行改为了并行执行。</p>
+<h4 id="传统安装"><a href="#传统安装" class="headerlink" title="传统安装"></a>传统安装</h4><img src="/LF_blog/notes/no-058/1718767642009-6139b236-2b2f-4c19-9b1d-8008815aa7bd-137311.png" class="">
+<p>传统方法中，包的安装分为三个主要阶段，线性执行：</p>
+<ol>
+<li>解析（Resolving）：解析依赖树，确定需要安装哪些包和版本。</li>
+<li>获取（Fetching）：下载包的压缩文件（tar 格式），这个阶段支持并行下载。</li>
+<li>写入（Writing）：将包解压，构建依赖树，并放置在 node_modules 目录。</li>
+</ol>
+<h4 id="pnpm-安装"><a href="#pnpm-安装" class="headerlink" title="pnpm 安装"></a>pnpm 安装</h4><img src="/LF_blog/notes/no-058/1718767649503-ad22465a-1c74-4897-ab52-7d63a5f8daaa-233278.png" class="">
+
+<p>可以看到在 pnpm 中（第二幅图），这些阶段对于每个包是同时进行的。一旦一个包被解析，它就开始下载，下载完毕后就立即开始写入。这样的并行处理显著提高了效率。</p>
+<p>此外，pnpm增加了一个额外的步骤：</p>
+<ul>
+<li>链接（Linking）：由于 pnpm 使用硬链接和符号链接来引用存储在全局 .pnpm-store 中的包，所以在写入阶段完成后，它还需要创建这些链接，以形成项目的 node_modules 目录结构。</li>
+</ul>
+<p>这个链接过程很快，因为它避免了复制文件的开销。与传统方式相比，pnpm 通过这种方式有效地减少了文件的重复写入，并使得多个项目能够共享同一份物理拷贝的包，这在多个项目以及 Monorepo 环境下特别有利。</p>
+<h2 id="三、幽灵依赖产生的根本原因"><a href="#三、幽灵依赖产生的根本原因" class="headerlink" title="三、幽灵依赖产生的根本原因"></a>三、幽灵依赖产生的根本原因</h2><p>然而就算使用 pnpm，幽灵依赖还是难以根除，我们不妨分析一下幽灵依赖产生的根本原因。</p>
+<h3 id="1-包管理工具的依赖解析机制"><a href="#1-包管理工具的依赖解析机制" class="headerlink" title="1. 包管理工具的依赖解析机制"></a>1. 包管理工具的依赖解析机制</h3><p>这就是前面介绍的平铺式带来的问题，这边就不重复讲述了。</p>
+<h3 id="2-第三方库历史问题"><a href="#2-第三方库历史问题" class="headerlink" title="2.第三方库历史问题"></a>2.第三方库历史问题</h3><p>由于历史原因或开发者的疏忽，有些项目可能没有正确地声明所有直接使用的依赖。对于三方依赖，幽灵依赖已经被当做了默认的一种功能来使用，提 issue 修复的话，周期很长，对此 pnpm 也没有任何办法，只能做出妥协。</p>
+<p>下面是 pnpm 的处理方式：</p>
+<ul>
+<li><strong>对直接依赖严格管理</strong>：对于项目的直接依赖，pnpm 保持严格的依赖隔离，确保项目只能访问到它在package.json 中声明的依赖。</li>
+<li><strong>对间接依赖妥协处理</strong>：考虑到一些第三方库可能依赖于未直接声明的包（幽灵依赖），pnpm 默认启用了 hoist 配置。这个配置会将一些间接依赖提升（hoist）到一个特殊的目录 node_modules/.pnpm/node_modules中。这样做的目的是在保持依赖隔离的同时，允许某些特殊情况下的间接依赖被访问。</li>
+</ul>
+<img src="/LF_blog/notes/no-058/1718767657631-727af2ec-36ac-4a2f-b7da-8739e2d0a7a2-590326.png" class="">
+
+<h3 id="3-JavaScript-模块解析策略"><a href="#3-JavaScript-模块解析策略" class="headerlink" title="3. JavaScript 模块解析策略"></a>3. JavaScript 模块解析策略</h3><p>Node.js 的模块解析策略允许从当前文件夹的 node_modules 开始，向上遍历文件系统，直到找到所需模块。</p>
+<p>这种解析策略，虽然提供了灵活性，也使得幽灵依赖更容易产生，因为它允许模块加载那些未直接声明在项目package.json 中的依赖。</p>
+<p>综合来看，幽灵依赖在目前是无法根除的，只能通过一些额外的处理进行管控，比如 eslint 对幽灵依赖的检查规则、pnpm 的 hoist 配置等。</p>
+<h2 id="四、pnpm-项目的依赖治理方案"><a href="#四、pnpm-项目的依赖治理方案" class="headerlink" title="四、pnpm 项目的依赖治理方案"></a>四、pnpm 项目的依赖治理方案</h2><p>对于依赖治理，大概涉及到以下几个部分：</p>
+<ul>
+<li>冗余依赖治理：某些包可能用不到，但还保留着，导致 package.json 愈发混乱。</li>
+<li>重叠依赖治理：monorepo 中 case 较多，比如根目录与子项目声明了相同的包，加大了 package.json 的管理成本，还有可能出现同一包多版本的问题。</li>
+<li>锁文件保护：要保证 package.json 与锁文件（pnpm-lock）的统一，防止其他开发者拉下代码后，因不统一造成一些功能差异。</li>
+</ul>
+<h3 id="1-冗余依赖治理"><a href="#1-冗余依赖治理" class="headerlink" title="1. 冗余依赖治理"></a>1. 冗余依赖治理</h3><p>对于冗余的情况，可以按照如下顺序检查：</p>
+<ol>
+<li>执行 pnpm why <package-name>，用来找出项目中一个特定的包被谁所依赖，给出包的依赖来源。</package-name></li>
+<li>全局搜索包名，检查是否有被引入。</li>
+<li>了解包的作用，判断项目中是否存在包的引用。</li>
+<li>删除包，执行 pnpm i 后，分别运行、打包项目，查看是否有明显问题。</li>
+</ol>
+<p>按照顺序执行完毕后，仍然可能存在问题，这是没法完全避免的，可以进一步通过测试进行排查。</p>
+<h3 id="2-重叠依赖治理"><a href="#2-重叠依赖治理" class="headerlink" title="2. 重叠依赖治理"></a>2. 重叠依赖治理</h3><p>对于 monorepo 而言，依赖的管理就比较复杂了，这边可以通过人肉+脚本的方式进行治理。</p>
+<p>为方便识别重叠依赖，我编写了一个脚本，遍历子项目中的 package.json 将与根目录重叠的依赖进行输出：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> fs <span class="token keyword">from</span> <span class="token string">'fs'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> path <span class="token keyword">from</span> <span class="token string">'path'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> fileURLToPath <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'url'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> chalk <span class="token keyword">from</span> <span class="token string">'chalk'</span><span class="token punctuation">;</span> <span class="token comment">// 引入 chalk</span>
+
+<span class="token comment">// 获取当前文件的目录路径，确保脚本可以在不同环境下正确执行</span>
+<span class="token keyword">const</span> __dirname <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span><span class="token function">fileURLToPath</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 修改后的读取 package.json 文件函数保持不变</span>
+<span class="token keyword">function</span> <span class="token function">readPackageJson</span><span class="token punctuation">(</span><span class="token parameter">filePath</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> jsonData <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> <span class="token string">'utf8'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>jsonData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">读取文件失败: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>filePath<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 修改后的比较依赖函数保持不变</span>
+<span class="token keyword">function</span> <span class="token function">compareDependencies</span><span class="token punctuation">(</span><span class="token parameter">rootDeps<span class="token punctuation">,</span> childDeps<span class="token punctuation">,</span> depType<span class="token punctuation">,</span> childName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> overlaps <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token punctuation">[</span>dep<span class="token punctuation">,</span> version<span class="token punctuation">]</span> <span class="token keyword">of</span> Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>childDeps<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rootDeps<span class="token punctuation">[</span>dep<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> versionCompare <span class="token operator">=</span> <span class="token punctuation">(</span>rootDeps<span class="token punctuation">[</span>dep<span class="token punctuation">]</span> <span class="token operator">===</span> version<span class="token punctuation">)</span>
+      <span class="token comment">// 如果子项目中的依赖在根目录中也存在，则记录下来</span>
+      overlaps<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>dep<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>chalk<span class="token punctuation">.</span><span class="token function">blueBright</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (在根目录中为: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>chalk<span class="token punctuation">.</span><span class="token function">blueBright</span><span class="token punctuation">(</span>rootDeps<span class="token punctuation">[</span>dep<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">) </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>versionCompare <span class="token operator">?</span> chalk<span class="token punctuation">.</span><span class="token function">green</span><span class="token punctuation">(</span><span class="token string">'✔'</span><span class="token punctuation">)</span> <span class="token operator">:</span> chalk<span class="token punctuation">.</span><span class="token function">red</span><span class="token punctuation">(</span><span class="token string">'✘'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">overlaps</span><span class="token operator">:</span> overlaps<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>chalk<span class="token punctuation">.</span><span class="token function">greenBright</span><span class="token punctuation">(</span><span class="token string">'- 重叠的'</span><span class="token punctuation">,</span>depType<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">\n</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span> overlaps<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n\n'</span> <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> rootPackageJsonPath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'package.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> rootPackageJson <span class="token operator">=</span> <span class="token function">readPackageJson</span><span class="token punctuation">(</span>rootPackageJsonPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rootPackageJson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'无法读取根目录的 package.json 文件'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 修改输出为终端输出，使用 chalk 增加颜色</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>chalk<span class="token punctuation">.</span><span class="token function">bold</span><span class="token punctuation">(</span><span class="token string">'📖 依赖分析报告\n'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> packagesDir <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'packages'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> childDirs <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readdirSync</span><span class="token punctuation">(</span>packagesDir<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">child</span> <span class="token operator">=&gt;</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>packagesDir<span class="token punctuation">,</span> child<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> child <span class="token keyword">of</span> childDirs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> childPackageJsonPath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>packagesDir<span class="token punctuation">,</span> child<span class="token punctuation">,</span> <span class="token string">'package.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> childPackageJson <span class="token operator">=</span> <span class="token function">readPackageJson</span><span class="token punctuation">(</span>childPackageJsonPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>childPackageJson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>chalk<span class="token punctuation">.</span><span class="token function">bold</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">🟢 子项目 </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>child<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">[</span><span class="token string">'dependencies'</span><span class="token punctuation">,</span> <span class="token string">'devDependencies'</span><span class="token punctuation">,</span> <span class="token string">'peerDependencies'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">depType</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> overlaps <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">compareDependencies</span><span class="token punctuation">(</span>
+          rootPackageJson<span class="token punctuation">[</span>depType<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          childPackageJson<span class="token punctuation">[</span>depType<span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          depType<span class="token punctuation">,</span>
+          child
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>overlaps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行效果如下：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">📖 依赖分析报告
+
+🟢 子项目 <span class="token constant">A</span>
+  <span class="token operator">-</span> 重叠的 dependencies
+@babel<span class="token operator">/</span>runtime<span class="token operator">-</span>corejs3<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">7.14</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">7.14</span><span class="token number">.0</span><span class="token punctuation">)</span> ✔
+……
+
+  <span class="token operator">-</span> 重叠的 devDependencies
+@commitlint<span class="token operator">/</span>cli<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">13.1</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">13.1</span><span class="token number">.0</span><span class="token punctuation">)</span> ✔
+@commitlint<span class="token operator">/</span>config<span class="token operator">-</span>conventional<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">13.1</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">13.1</span><span class="token number">.0</span><span class="token punctuation">)</span> ✔
+……
+
+🟢 子项目 <span class="token constant">B</span>
+
+  <span class="token operator">-</span> 重叠的 devDependencies
+<span class="token literal-property property">typescript</span><span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.4</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.3</span><span class="token number">.5</span><span class="token punctuation">)</span> ✘
+<span class="token literal-property property">zx</span><span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.2</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.2</span><span class="token number">.0</span><span class="token punctuation">)</span> ✔
+<span class="token literal-property property">chalk</span><span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.1</span><span class="token number">.0</span> <span class="token punctuation">(</span>在根目录中为<span class="token operator">:</span> <span class="token operator">^</span><span class="token number">4.1</span><span class="token number">.0</span><span class="token punctuation">)</span> ✔<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过这种方式我们就可以有目的性的去逐个检查依赖，依据一种合理的 monorepo 依赖管理模式进行处理，下面是一种合适的处理规则：</p>
+<ul>
+<li>将共享的<strong>开发时</strong>依赖移至根目录的 package.json，如 jest、eslint、lint-stage。</li>
+<li>对于需要特定版本以保证兼容性的依赖，考虑使用 resolutions 字段强制解析为特定版本。</li>
+<li>为需要发包的工具、类库提供 peerDependencies 字段。</li>
+<li>对于运行时依赖，如果所有子项目都有依赖，将删除子项目中的声明，提升至根目录，同时在需要发包的工具、类库的 peerDependencies 中声明相关的依赖。</li>
+<li>发包时，通过调用脚本将目标子项目中的 peerDependencies 内容转移至 dependicies 中。</li>
+</ul>
+<h3 id="3-锁文件保护"><a href="#3-锁文件保护" class="headerlink" title="3. 锁文件保护"></a>3. 锁文件保护</h3><p>核心目的：保证任何开发者在拉取代码后，执行 pnpm i 不会导致 pnpm-lock 发生更新。</p>
+<h4 id="初步方案"><a href="#初步方案" class="headerlink" title="初步方案"></a>初步方案</h4><ol>
+<li>限制 pnpm、node 版本</li>
+<li>本地在 lint-stage 中新增脚本检查是否存在意外更新</li>
+<li>CI 流水线上检查是否存在意外更新</li>
+</ol>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><p>核心思路：检测 pacakge.json 和 pnpm-lock 的依赖是否对等。</p>
+<p>我们可以先观察一下 pnpm i 的 options：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Version <span class="token number">7.26</span>.3
+Usage: <span class="token function">pnpm</span> <span class="token function">install</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span>
+
+Options:
+      --<span class="token punctuation">[</span>no-<span class="token punctuation">]</span>color                      Controls colors <span class="token keyword">in</span> the output. By default, output is always colored when
+                                        it goes directly to a terminal
+      --<span class="token punctuation">[</span>no-<span class="token punctuation">]</span>frozen-lockfile            Don<span class="token string">'t generate a lockfile and fail if an update is needed. This setting
+                                        is on by default in CI environments, so use --no-frozen-lockfile if you
+                                        need to disable it for some reason
+      --[no-]verify-store-integrity     If false, doesn'</span>t check whether packages <span class="token keyword">in</span> the store were mutated
+      --aggregate-output                Aggregate output from child processes that are run <span class="token keyword">in</span> parallel, and only
+                                        print output when child process is finished. It makes reading large logs
+                                        after running <span class="token variable"><span class="token variable">`</span><span class="token function">pnpm</span> recursive<span class="token variable">`</span></span> with <span class="token variable"><span class="token variable">`</span><span class="token parameter variable">--parallel</span><span class="token variable">`</span></span> or with
+                                        <span class="token variable"><span class="token variable">`</span>--workspace-concurrency<span class="token variable">`</span></span> much easier <span class="token punctuation">(</span>especially on CI<span class="token punctuation">)</span>. Only
+                                        <span class="token variable"><span class="token variable">`</span><span class="token parameter variable">--reporter</span><span class="token operator">=</span>append-only<span class="token variable">`</span></span> is supported.
+      --child-concurrency <span class="token operator">&lt;</span>number<span class="token operator">&gt;</span>      Controls the number of child processes run parallelly to build <span class="token function">node</span>
+                                        modules
+  -D, <span class="token parameter variable">--dev</span>                             Only <span class="token variable"><span class="token variable">`</span>devDependencies<span class="token variable">`</span></span> are installed regardless of the <span class="token variable"><span class="token variable">`</span>NODE_ENV<span class="token variable">`</span></span>
+  -C, <span class="token parameter variable">--dir</span> <span class="token operator">&lt;</span>dir<span class="token operator">&gt;</span>                       Change to directory <span class="token operator">&lt;</span>dir<span class="token operator">&gt;</span> <span class="token punctuation">(</span>default:
+                                        /Users/bytedance/Desktop/项目/byteview-mm-we
+      --fix-lockfile                    Fix broken lockfile entries automatically
+      ……
+      --lockfile-dir <span class="token operator">&lt;</span>dir<span class="token operator">&gt;</span>              The directory <span class="token keyword">in</span> <span class="token function">which</span> the pnpm-lock.yaml of the package will be created.
+                                        Several projects may share a single lockfile.
+      --lockfile-only                   Dependencies are not downloaded. Only <span class="token variable"><span class="token variable">`</span>pnpm-lock.yaml<span class="token variable">`</span></span> is updated
+      ……
+Visit https://pnpm.io/7.x/cli/install <span class="token keyword">for</span> documentation about this command.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从中可以提取出一些可能有用的 option:</p>
+<ul>
+<li><a href="https://link.juejin.cn/?target=https://pnpm.io/zh/cli/install%23--frozen-lockfile">– frozen-lockfile</a>：检查 package.json 和 pnpm-lock.yaml 文件是否一致（即如果<strong>依赖项更新是必要的</strong>），命令会直接失败。</li>
+<li><a href="https://link.juejin.cn/?target=https://pnpm.io/zh/cli/install%23--fix-lockfile">–fix-lockfile</a>：检查当前项目的依赖关系，并更新 pnpm-lock.yaml 以确保其中记录的包版本与 package.json 中的声明一致。</li>
+<li>–lockfile-dir ：网上找不到相关的文档，根据说明可以判断是控制 pnpm-lock.yaml 的生成路径。</li>
+<li><a href="https://link.juejin.cn/?target=https://pnpm.io/zh/cli/install%23--lockfile-only">–lockfile-only</a>：只更新 pnpm-lock.yaml 和 package.json。 不写入 node_modules 目录。</li>
+</ul>
+<p>首先我们可以排除 –lockfile-dir </p><dir>，由于我们只需要检查问题而不用修复问题，剩余的 option 中 – frozen-lockfile 是最符合预期的，在 github 上也有<a href="https://link.juejin.cn/?target=https://github.com/orgs/pnpm/discussions/3202">相关需求的讨论</a>，基于这个 option，我实现了一个基础脚本：<p></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> execSync <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'child_process'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> chalk <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'zx'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 尝试使用 --frozen-lockfile 选项来更新依赖</span>
+  <span class="token function">execSync</span><span class="token punctuation">(</span><span class="token string">'pnpm install --frozen-lockfile'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">stdio</span><span class="token operator">:</span> <span class="token string">'inherit'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+    chalk<span class="token punctuation">.</span><span class="token function">green</span><span class="token punctuation">(</span><span class="token string">'✅ The pnpm-lock.yaml is up-to-date. No updates are needed.'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 如果命令失败，则可能是因为需要更新 lockfile</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>
+    chalk<span class="token punctuation">.</span><span class="token function">red</span><span class="token punctuation">(</span>
+      <span class="token string">'🚨 Detected that pnpm-lock.yaml needs an update. Please run pnpm install and commit the updated lockfile.'</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  process<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>基于这个脚本，我们还可以加入一些额外的判断工作，如：pnpm、node 版本不一致判断。</p>
+</dir>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/LF_blog/about" rel="external nofollow noreferrer">LYF</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://yunfulin.github.io/LF_blog/LF_blog/notes/no-058.html">https://yunfulin.github.io/LF_blog/LF_blog/notes/no-058.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/LF_blog/about" target="_blank">LYF</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/LF_blog/tags/pnpm/">
+                                    <span class="chip bg-color">pnpm</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/LF_blog/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/LF_blog/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/LF_blog/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/LF_blog/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/LF_blog/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/LF_blog/libs/valine/av-min.js"></script>
+<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'NGmwLZbSHQd3fOMlT3zaJuPp-gzGzoHsz',
+        appKey: 'r6I819NiBEInY6xzQHr3dmjf',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'monsterid',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '昵称填写QQ，可以显示QQ头像和昵称，那就很 nice ',
+        enableQQ: true,
+        requiredFields: ['nick','mail'], //设置必填项
+        emojiCDN: '//i0.hdslb.com/bfs/emote/', //设置哔站表情包地址
+        // 表情title和图片映射
+        emojiMaps: {
+        "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+        "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+        "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+        "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+        "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+        "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+        "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+        "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+        "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+        "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+        "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+        "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+        "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+        "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+        "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+        "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+        "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+        "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+        "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+        "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+        "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+        "tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+        "tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+        "tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+        "tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+        "tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+        "tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+        "tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+        "tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+        "tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+        "tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+        "tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+        "tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+        "tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+        "tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+        "tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+        "tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+        "tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+        "tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+        "tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+        "tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+        "tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+        "tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+        "tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+        "tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+        "tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+        "tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+        "tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+        "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+        "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+        },
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/LF_blog/notes/no-027.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/LF_blog/medias/featureimages/17.jpg" class="responsive-img" alt="如何防止录屏截图等恶意下载行为">
+                        
+                        <span class="card-title">如何防止录屏截图等恶意下载行为</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/LF_blog/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/LF_blog/tags/javascript/">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/LF_blog/notes/no-056.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/LF_blog/medias/featureimages/7.jpg" class="responsive-img" alt="如何限制一个账号只能在一处登录">
+                        
+                        <span class="card-title">如何限制一个账号只能在一处登录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/LF_blog/categories/%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/LF_blog/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: YF小林犟<br />'
+            + '文章作者: LYF<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/LF_blog/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/LF_blog/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/LF_blog/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/LF_blog/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/LF_blog/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2025</span>
+            
+            <!-- <span id="year">2020</span> -->
+            <a href="/LF_blog/about" target="_blank">LYF</a>
+            <!-- |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a> -->
+            <br>
+            <!-- 
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">82.1k</span>&nbsp;字
+             -->
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                &nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "6";
+                    var startDate = "15";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://gitee.com/yunfulin" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1826656997@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1826656997" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1826656997" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/LF_blog/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/LF_blog/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/LF_blog/libs/materialize/materialize.min.js"></script>
+    <script src="/LF_blog/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/LF_blog/libs/aos/aos.js"></script>
+    <script src="/LF_blog/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/LF_blog/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/LF_blog/js/matery.js"></script>
+    <script src="/LF_blog/"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/LF_blog/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/LF_blog/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/LF_blog/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!--单击显示文字-->
+    <script type="text/javascript" src="/LF_blog/js/click_show_text.js"></script>
+    <!-- 鼠标移动特效 -->
+    <script type="text/javascript" src="/LF_blog/js/mouse_snow.js"></script>
+    <!-- <script src='https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js'></script> -->
+    <!-- 动态标签栏 -->
+    <script type="text/javascript">
+      var OriginTitile = document.title, st; 
+      document.addEventListener("visibilitychange", function () { 
+        document.hidden ? (document.title = "爱我，别走！", clearTimeout(st)) : (document.title = "咦，你来啦！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) }) 
+    </script>
+
+    <!-- 白色冒泡 -->
+    
+      <script type="text/javascript" src="/LF_blog/libs/others/buble.js"></script>
+    
+    
+<script src="/LF_blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/LF_blog/live2dw/assets/nico.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"right","hOffset":100,"vOffset":-15},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+
+</html>
