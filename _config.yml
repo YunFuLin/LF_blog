@@ -4,17 +4,18 @@
 
 # Site
 title: YF小林犟
-subtitle: 'day day up'
-description: '一个简单的博客'
-keywords: 'YF小林犟hexo'
+subtitle: "day day up"
+description: "一个简单的博客"
+keywords: "YF小林犟hexo"
 author: LYF
 language: zh-CN
-timezone: ''
+timezone: ""
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://yunfulin.github.io/LF_blog
+url: https://yunfulin.github.io
 permalink: :urlname/:title.html
+root: /LF_blog
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -37,7 +38,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -50,21 +51,21 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 prismjs:
   enable: true
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 12
   order_by: -date
 
@@ -84,7 +85,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: "mtime"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -105,10 +106,9 @@ theme: hexo-theme-matery
 # Deployment 部署
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: 'git'
+  type: "git"
   repository: https://github.com/YunFuLin/LF_blog.git
   branch: gh-pages
-
 
 search:
   path: search.xml
@@ -116,7 +116,7 @@ search:
 
 permalink_pinyin:
   enable: true
-  separator: '-' # default: '-'
+  separator: "-" # default: '-'
 
 githubEmojis:
   enable: true
@@ -132,7 +132,7 @@ feed:
   hub:
   content:
   content_limit: 140
-  content_limit_delim: ' '
+  content_limit_delim: " "
   order_by: -date
 
 # live2d
@@ -170,4 +170,3 @@ live2d:
 # 自动生成sitemap(站点)
 baidusitemap:
   path: baidusitemap.xml
-
